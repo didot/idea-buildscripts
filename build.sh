@@ -17,7 +17,7 @@ cleanup_dir() {
 trap "cleanup_dir" ERR
 
 download_sources() {
-  git clone --depth=1 --branch=idea/${_build} git@github.com:JetBrains/intellij-community.git
+  git clone --depth=1 --branch=idea/${_build} https://github.com/JetBrains/intellij-community.git
   git clone --depth=1 --branch=idea/${_build} git://git.jetbrains.org/idea/android.git idea-android
   git clone git://git.jetbrains.org/idea/adt-tools-base.git idea-adt-tools-base
   pushd idea-adt-tools-base
