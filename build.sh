@@ -18,11 +18,9 @@ trap "cleanup_dir" ERR
 
 download_sources() {
   git clone --depth=1 --branch=idea/${_build} https://github.com/JetBrains/intellij-community.git
-  git clone --depth=1 --branch=idea/${_build} git://git.jetbrains.org/idea/android.git idea-android
-  git clone git://git.jetbrains.org/idea/adt-tools-base.git idea-adt-tools-base
-  pushd idea-adt-tools-base
-  git checkout 17e9c8b666cac0b974b1efc5e1e4c33404f72904
-  popd
+  git clone --depth=1 --branch=idea/${_build} https://github.com/didot/idea-android-mirror.git idea-android
+  # adt-tools-base is not getting updated with new tags
+  git clone --depth=1 --branch=idea/201.7223.18 https://github.com/didot/adt-tools-base.git idea-adt-tools-base
 
   curl -fsSL -O https://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar
 }
