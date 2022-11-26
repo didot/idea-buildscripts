@@ -20,7 +20,7 @@ download_sources() {
   git clone --depth=1 --branch=idea/${_build} https://github.com/JetBrains/intellij-community.git
   git clone --depth=1 --branch=idea/${_build} https://github.com/didot/idea-android-mirror.git idea-android
   # adt-tools-base is not getting updated with new tags
-  git clone --depth=1 --branch=idea/201.7223.18 https://github.com/didot/adt-tools-base.git idea-adt-tools-base
+  git clone --depth=1 --branch=idea/201.7223.18 https://github.com/didot/idea-adt-tools-base-mirror.git idea-adt-tools-base
 
   mv idea-android intellij-community/android
   mv idea-adt-tools-base intellij-community/android/tools-base
