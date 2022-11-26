@@ -38,22 +38,16 @@ sha256sums=('SKIP'
             'b58e459509e190bed737f3592bc1950485322846cf10e78ded1d065153012d70')
 
 prepare() {
-  cd intellij-community
-
-  # build system doesn't like symlinks
-#  mv "${srcdir}"/idea-android android
-#  mv "${srcdir}"/idea-adt-tools-base android/tools-base
-
   export MAVEN_REPOSITORY=${srcdir}/.m2/repository
   mvn install:install-file \
-    -Dfile="${srcdir}"/junit-3.8.1.jar \
+    -Dfile=junit-3.8.1.jar \
     -DgroupId=junit \
     -DartifactId=junit \
     -Dversion=3.8.1 \
     -Dpackaging=jar \
     -DgeneratePom=true
 
-  echo ${_build} > build.txt
+  echo ${_build} > intellij-community/build.txt
 }
 
 build() {
