@@ -5,7 +5,7 @@
 
 pkgname=intellij-idea-community-edition
 pkgver=2022.2.3
-_build=222.4345.14
+_build=223.7571.182
 _jdk=17.0.5-amzn
 _jrever=17
 _jdkver=17
@@ -47,7 +47,7 @@ prepare() {
     -Dpackaging=jar \
     -DgeneratePom=true
 
-  echo ${_build} > intellij-community/build.txt
+  echo "${_build}" > intellij-community/build.txt
 }
 
 build() {
@@ -61,7 +61,8 @@ build() {
     -Dintellij.build.use.compiled.classes=false \
     -Dintellij.build.target.os=mac \
     -Dintellij.build.dmg.with.bundled.jre=true \
-    -Dintellij.build.dmg.without.bundled.jre=true
+    -Dintellij.build.dmg.without.bundled.jre=false \
+    -Dintellij.build.skip.build.steps=mac_dmg,mac_sit
 #  tar -xf out/idea-ce/artifacts/ideaIC-${_build}-no-jbr.tar.gz -C "${srcdir}"
 }
 
