@@ -21,7 +21,7 @@ git_shallow_checkout() {
   local target_dir="$3"
 
   [[ ! -d "$target_dir" ]] && mkdir "$target_dir"
-  pushd "$3"
+  pushd "$target_dir"
   [[ ! -d .git ]] && { git init; git remote add origin "$repo"; }
   git fetch --depth 1 origin tag "$tag"
   git checkout "$tag"
@@ -29,11 +29,11 @@ git_shallow_checkout() {
 }
 
 download_sources() {
-  [[ -d intellij-community && -d intellij-community/idea-android ]] && rm -rf intellij-community/idea-android
   git_shallow_checkout https://github.com/JetBrains/intellij-community.git "idea/${_build}" intellij-community
-  git_shallow_checkout https://github.com/didot/idea-android-mirror "idea/${_build}" idea-android
 
-  mv idea-android intellij-community/android
+  pushd intellij-community
+  git_shallow_checkout https://github.com/didot/idea-android-mirror "idea/${_build}" android
+  popd
 }
 
 unpack_files() {
@@ -44,6 +44,8 @@ unpack_files() {
 
 unset LESS LESS_TERMCAP_mb ENV LESS_TERMCAP_md ENV LESS_TERMCAP_me ENV LESS_TERMCAP_se ENV LESS_TERMCAP_so ENV LESS_TERMCAP_ue ENV LESS_TERMCAP_us
 
+rm -rf intellij-community/out
+rm -rf intellij-community/build/jps-bootstrap-work
 unpack_files
 
 prepare
